@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+   
+</head>
+<body>
+    <div class="container-fluid">
+        <h2 class="text-center mt-4 mb-4">Data View</h2>
+        <div class="row h-100 d-flex justify-content-center">
+            <div class="card text-white bg-secondary mb-3" id="url_card">
+                <div class="card-header">
+                 <button class="btn  btn-lg btn-light float-left btn-inline-block" style="width:49%" onclick="toggleFileTOUrl()">URL</button>
+                 <button class="btn  btn-lg btn-light float-right btn-inline-block" style="width:49%" onclick="toggleUrlToFile()">FILE</button>
+                </div>
+                <div class="card-body" id="url_body">
+                    <h5 class="card-title text-center">Search URL</h5>
+                        <div class="form-group">
+                        <input type="url" class="form-control" id="search" placeholder="URL">
+                        </div>
+                        <button type="submit" class="mt-4 btn btn-primary" id="search_btn" onclick="getApi()">Submit</button> 
+                </div>
+
+                <div class="card-body" id="excel_file" style="display: none;">
+                    <div class="card-title text-center" ><h5>Select Excel File</h5></div>
+                    <div class="btn-lg btn-block" id="select_file">
+                        <input class="text-center" type="file" id="excel_file" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-between">
+            <div id="excel_data" class="mt-4 col-md-12"></div>
+            <div id="excel_data_editable"  class="mt-4 col-md-12"  style="display: none;"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12 text-center" id ="editable" style="display: none;">
+                <button  type="button" class="btn btn-primary btn-lg" onclick="editClicked()">EDIT</button>
+            </div>
+
+            <div class="col-md-12 text-center"  id ="save" style="display: none;">
+                <button  type="button" class="btn btn-success btn-lg" onclick="saveClicked()">SUBMIT</button>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="apiPopulate.js"></script>
+</body>
+</html>
