@@ -5,7 +5,7 @@
     fetch(`${loadUrl}`)
   .then(response => response.json())
   .then(data => {
-      console.log(data);
+    //   console.log(data);
       var sheet_data = new Array();
       var key = new Array();
       for (let value of Object.keys(data[0])) {
@@ -22,19 +22,105 @@
       }
 
       var copyData =ArrayCopy(sheet_data);
-      createTable(sheet_data);
+      createTable(sheet_data,excel_data);
       btnEdit(sheet_data.length);
       createTableCopy(copyData);
 });
     
 }
 
+
+
+function loadJSON(callback) {   
+
+  var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/json");
+  xobj.open('GET','sample.json', true); // Replace 'appDataServices' with the path to your file
+  xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+          // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+          callback(xobj.responseText);
+        }
+  };
+  xobj.send(null);  
+}
+
+
+
+function toggleUrlToJson(){
+
+  loadJSON(function(response) {
+    // Parsing JSON string into object
+      obj = JSON.parse(response);
+    
+      var tables = new Array();
+ 
+       for (let value of Object.keys(obj)) {
+         tables.push(value);
+       }
+   
+      for (var i = 0 ;i < tables.length;i++){
+       const obj1 = obj[tables[i]];
+      
+       var sheet_data = new Array();
+       var key = new Array();
+       key = Object.keys(obj1);
+       if (key.length!=0){
+        sheet_data.push(key);
+        var val = new Array();
+        val = Object.values(obj1);
+        if(Array.isArray(val[0])){
+          for(let k =0;k<val[0].length;k++){
+           var arr= new Array();
+          for(let j =0; j<val.length;j++){
+               arr.push(val[j][k]);
+          }
+          sheet_data.push(arr);
+         }
+        }else{
+        sheet_data.push(val);
+        }
+ 
+        var iDiv = document.createElement('div');
+        iDiv.id = `${tables[i]}`;
+        iDiv.classList.add("ml-auto");
+        iDiv.classList.add("col-md-12");
+        document.getElementById("tablesCreation").appendChild(iDiv);
+
+
+        var DivC = document.createElement('div');
+        DivC.id = `${tables[i]+1}`;
+        DivC.style.display="none";
+        DivC.classList.add("ml-auto");
+        document.getElementById("tablesCreation").appendChild(DivC);
+ 
+        var copyData =ArrayCopy(sheet_data);
+        createTable(sheet_data,tables[i]);
+        btnEdit(sheet_data.length);
+        createTableCopy(copyData,tables[i]+1);
+       }
+    if (document.getElementById("tablesCreation").childElementCount > 0){
+      document.getElementById('editable').style.display="inline-block";
+    }
+      
+   }
+  
+  });
+
+    document.getElementById("excel_file").style.display="none";
+    document.getElementById("url_body").style.display="none";
+  }
+
+
+
 function toggleFileTOUrl(){
-   document.getElementById("url_body").style.display="block";
+   document.getElementById("url_body").style.display="inline-block";
 
    document.getElementById("excel_file").style.display="none";
 
 }
+
+
 
 function toggleUrlToFile(){
     document.getElementById("url_body").style.display="none";
@@ -71,7 +157,7 @@ excel_file.addEventListener('change', (event) => {
 
         var copyData =ArrayCopy(sheet_data);
 
-        createTable(sheet_data);
+        createTable(sheet_data,excel_data);
         btnEdit(sheet_data.length);
         createTableCopy(copyData);
     }
@@ -83,13 +169,13 @@ excel_file.addEventListener('change', (event) => {
  }
 
 
-function createTable(sheet_data){
+function createTable(sheet_data,divId){
 
     document.getElementById('url_card').style.display="none";
 
     if(sheet_data.length > 0)
     {
-        var table_output = '<table class="table table-striped table-bordered">';
+        var table_output = '<table class="table table-striped table-responsive table-bordered">';
 
         for(var row = 0; row < sheet_data.length; row++)
         {
@@ -119,10 +205,11 @@ function createTable(sheet_data){
 
         table_output += '</table>';
 
-        document.getElementById('excel_data').innerHTML = table_output;
+        document.getElementById(`${divId}`).innerHTML = table_output;
     }
 
 }
+
 
 function ArrayCopy(sheet_data){
     var newArray = [] ;
@@ -144,11 +231,12 @@ function ArrayCopy(sheet_data){
    return newArray;
 }
 
-function createTableCopy(sheet_data){
+
+function createTableCopy(sheet_data,divId){
     
     if(sheet_data.length > 0)
     {
-        var table_output = '<table class="table table-striped table-bordered" style="border:dotted" id="data_edit">';
+        var table_output = '<table class="table table-striped table-bordered table-responsive" style="border:dotted" >';
 
         for(var row = 0; row < sheet_data.length; row++)
         {
@@ -176,7 +264,7 @@ function createTableCopy(sheet_data){
 
         table_output += '</table>';
 
-        document.getElementById('excel_data_editable').innerHTML = table_output;
+        document.getElementById(`${divId}`).innerHTML = table_output;
     }
 
 }
@@ -186,31 +274,46 @@ function createTableCopy(sheet_data){
 function btnEdit(S_length){
 
     if (S_length > 0){
-        document.getElementById('editable').style.display="block";
+        document.getElementById('editable').style.display="inline-block";
     }    
 }
 
+
 function editClicked(){
     document.getElementById('editable').style.display="none";
-    document.getElementById('save').style.display="block";
+    document.getElementById('save').style.display="inline-block";
     myFunction();
-    document.getElementById('excel_data').style.display="inline-block";
+    document.getElementById('tablesCreation').style.display="inline-block";
     document.getElementById('excel_data_editable').style.display="inline-block";
-    
+    dynamicContentChange();
 }
+
 
 function saveClicked(){
     document.getElementById('excel_data').style.display="none";
-    document.getElementById('excel_data_editable').style.display="block";
+    document.getElementById('excel_data_editable').style.display="inline-block";
     document.getElementById('editable').style.display="none";
-    document.getElementById('save').style.display="none"; 
-    document.getElementById('data_edit').style.border="none"; 
+    document.getElementById('save').style.display="none";  
     changeEditableFalse();
     var element = document.getElementById("excel_data_editable");
     element.classList.remove("col-md-6");
     element.classList.add("col-md-12");
+    var elements=document.getElementById('tablesCreation').children;
+    for(let i = 0; i < elements.length; i++ ){
+        console.log(elements[i]);
+        if(i%2==0){
+          elements[i].style.display="none";
+        }else{
+          elements[i].classList.remove("col-md-6");
+          elements[i].classList.add("col-md-12");
+          elements[i].classList.add("ml-auto"); 
+          elements[i].children[0].style.border="solid" 
+        }
+        
+    }
 
 }
+
 
 function changeEditableFalse(){
     var arr=document.getElementsByClassName('edited');
@@ -219,6 +322,7 @@ function changeEditableFalse(){
             arr[row].setAttribute("contenteditable","false");
         }
 }
+
 
 function myFunction() {
     var element = document.getElementById("excel_data");
@@ -231,3 +335,18 @@ function myFunction() {
     element.classList.add("col-md-6");
     element.classList.add("table-responsive");
   }
+
+
+  function dynamicContentChange(){
+    var elements=document.getElementById('tablesCreation').children;
+    for(let i = 0; i < elements.length; i++ ){
+        elements[i].classList.remove("col-md-12");
+        elements[i].classList.add("col-md-6");
+        elements[i].classList.add("ml-auto");
+        elements[i].style.display="inline-block";
+    }
+  }
+
+
+
+  

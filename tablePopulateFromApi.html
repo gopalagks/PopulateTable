@@ -17,8 +17,10 @@
         <div class="row h-100 d-flex justify-content-center">
             <div class="card text-white bg-secondary mb-3" id="url_card">
                 <div class="card-header">
-                 <button class="btn  btn-lg btn-light float-left btn-inline-block" style="width:49%" onclick="toggleFileTOUrl()">URL</button>
-                 <button class="btn  btn-lg btn-light float-right btn-inline-block" style="width:49%" onclick="toggleUrlToFile()">FILE</button>
+                 <button class="btn  btn-lg btn-light float-left btn-inline-block" style="width:32%" onclick="toggleFileTOUrl()">URL</button>
+                 <button class="btn  btn-lg btn-light float-middle btn-inline-block" style="width:31%" onclick="toggleUrlToFile()">FILE</button>
+                 <button class="btn  btn-lg btn-light float-right btn-inline-block" style="width:33%" onclick="toggleUrlToJson()">JSON</button>
+
                 </div>
                 <div class="card-body" id="url_body">
                     <h5 class="card-title text-center">Search URL</h5>
@@ -36,7 +38,9 @@
                 </div>
             </div>
         </div>
-        
+
+        <div class="row h-100 d-flex justify-content-center" id="tablesCreation">
+        </div>
         <div class="row justify-content-between">
             <div id="excel_data" class="mt-4 col-md-12"></div>
             <div id="excel_data_editable"  class="mt-4 col-md-12"  style="display: none;"></div>
@@ -54,6 +58,8 @@
 
         </div>
     </div>
+
     <script type="text/javascript" src="apiPopulate.js"></script>
+    
 </body>
 </html>

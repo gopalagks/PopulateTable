@@ -1,0 +1,92 @@
+{
+  "dict1": {
+    "Acknowledgement Date  ": "30/03/2021", 
+    "Acknowledgement No.  ": "182110405139623", 
+    "Amount Chargeable in Words ": "INR Fourteen Thousand One Hundred Fifty Four Rupees Only .", 
+    "BHUBANESHWAR Dist. STATE CODE ": "21  Orissa 751006", 
+    "Billing To ": "SIBRAJ ENTERPRISES  PLOT NO.657 / 2142, 1ST FLOORGOVINDPRASABOMIKHAL", 
+    "CIN  ": "U36104KL1981PTC003447", 
+    "Credit Limit  ": "1,400,000.00", 
+    "Current O/S  ": "8,622,316.68", 
+    "Date ": "30.03.2021", 
+    "FROM ": "DUROFLEX PVT. LTD. Kolkata Depot.G-14, 109/1, , Beliaghata, Main RoadDr. Suresh Chandra Banerjee  Road Dist.West Bengal 700010", 
+    "GST No  ": "21BFQPP4804R1ZU", 
+    "GST No.": "21BFQPP4804R1ZU", 
+    "GSTIN/UIN  ": "19AABCD8855E1ZG", 
+    "IR No  ": "405821b6efe9db3caf4f6dfd08eba988845c055fe281f41ca01e64926f7c45e7", 
+    "IRN Date  ": "30/03/2021", 
+    "Invoice No ": "2092000471", 
+    "PAN No.  ": "BFQPP4804R", 
+    "Removal Date  ": "30.03.2021", 
+    "STATE CODE  ": "19", 
+    "Shipping To ": "SIBRAJ ENTERPRISES  PLOT NO.657 / 2142, 1ST FLOORGOVINDPRASA  BHUBANESHWARBOMIKHAL 751006", 
+    "Supply Type  ": "B2B", 
+    "Tax Amount (in words) ": "INR Two Thousand One Hundred Fifty Nine Rupees Two Paise Only .", 
+    "Website Address ": "www.duroflexworld.com", 
+    "Whether Tax is Payable Under Reverse Charge ": "No"
+  }, 
+  "dict2": {
+    "Gross Total": "11,994.57", 
+    "Gross Value Of Invoice": "14,154.00", 
+    "Round off": "0.41", 
+    "Tax Amount": "2,159.02", 
+    "Total": "14,153.59", 
+    "Trade Discount": "0.00"
+  }, 
+  "dict3": {
+    "CGST  Amt": [
+      "0.00"
+    ], 
+    "Description": [
+      "BACK MAGIC 1981 1829 127 BLUE \n(78.000-72.000-5.000)"
+    ], 
+    "HSN No": [
+      "94042920"
+    ], 
+    "HSN/  SAC": [
+      "94042920 \nCoir Mattress"
+    ], 
+    "IGST  %": [
+      "18"
+    ], 
+    "IGST  Amt": [
+      "2,159.02"
+    ], 
+    "Net Amount": [
+      "11,994.57", 
+      "11,994.57"
+    ], 
+    "QTY": [
+      "1"
+    ], 
+    "Qty": [
+      "1.000 \nEA", 
+      "1"
+    ], 
+    "Rate INR": [
+      "11,994.57", 
+      "11,994.57"
+    ], 
+    "SGST  Amt": [
+      "0.00"
+    ], 
+    "Sl  No": [
+      "1", 
+      "Total"
+    ], 
+    "Spcl/Frbs Disc": [
+      "0.00", 
+      "0.00"
+    ], 
+    "Tax": [
+      "2,159.02"
+    ], 
+    "Taxable Value": [
+      "11,994.57"
+    ], 
+    "Value INR": [
+      "11,994.57", 
+      "11,994.57"
+    ]
+  }
+}
